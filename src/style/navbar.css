@@ -101,6 +101,26 @@
     gap: 10px;
 }
 
+.sidebar .sideMenu li button {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+    padding: 0px 10px;
+    gap: 10px;
+    border: none;
+    border-radius: 48px;
+    color: var(--danger);
+    background-color: var(--light);
+    cursor: pointer;
+    
+
+}
+
 .sidebar .sideMenu li.active a {
     color: var(--success); 
     padding: 0px 10px;
@@ -139,6 +159,7 @@
     transition: all 0.3s ease;
     display: flex;
     height: 100dvh;
+    background-color: rebeccapurple;
 }
 
 .close{
@@ -287,10 +308,184 @@
 }
 
 .mainContent{
-    display: flex;
     margin-top: 56px;
     background: var(--grey);
-    padding: 0.5em 0.5em;
+    padding:10px 10px 10px 10px;
+    flex: 1;    
+}
+.titleSection{
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-size: 1em;
+    padding: 1em 1em;
+    border-radius: 0.5em;
+    background-color: var(--light);
     flex: 1;
-   
+    color: var(--dark);
+
+}
+.greetingAndTime{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.timeContainer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+     color: var(--dark);
+}
+.mainContent .titleSection h2{
+    font-size: 2em;
+}
+.greeting{
+    font-size: 1rem;
+}
+.mainContent .titleSection button{
+    height: 0;
+    padding: 1.5em 1em;
+    background-color: var(--primary);
+    color: var(--dark);
+    border-radius: 0.5em;
+    border: 1px solid var(--light);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.grid{
+    height: auto;
+    margin-top: 0.5em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap:0.5em;
+}
+.grid div{
+    background:var(--light);
+    min-height: 7em;
+    border-radius: 0.5em;
+    display: flex;
+    gap: 1em;
+    padding: 1%;
+
+}
+.grid article{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+.info{
+    width: 120px;
+}
+.info li{
+    width: 130px;
+    line-height: 1.2em;
+}
+.info li:nth-child(1){
+    font-weight: 600;
+    font-size: 1.7em;
+}
+.info .title{
+    font-weight: 400;
+    font-size: 1.em;
+}
+
+.grid article .bx{
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    background-color: var(--light-primary);
+    border-radius: 0.5em;
+}
+.component[data-index="0"] article i {
+    color:var(--primary);
+  }
+
+.component[data-index="1"] article i {
+    background: var(--light-warning);
+    color:var(--warning);
+  }
+
+.component[data-index="2"] article i {
+    background: var(--light-success);
+    color:var(--success);
+  }
+
+.component[data-index="3"] article i {
+    background: var(--danger-ligth);
+    color:var(--danger);
+  }
+
+.grid-two{
+    margin-top: 0.5em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 0.5em;
+}
+
+.recent-orders-section{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light);
+    border-radius: 1em;
+    padding: 1em;
+}
+.section-header, .section-nav {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+.headerAndNavbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+}
+table{
+ background-color: red;
+}
+.reminders-section{
+     background: var(--light);
+     border-radius: 1em;
+     padding: 1em;
+}
+
+.mainGrid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 0.5em;
+}
+.mainGrid .bx{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* media */
+
+@media screen and (min-width:320px )and (max-width:768px) {
+    .content nav form{
+        max-width: 250px;
+        width: 100%;
+        margin-right: auto;
+       
+    }
+    .formActive{
+        min-width: 100px;
+        transition: all 0.3s ease;
+    }
 }

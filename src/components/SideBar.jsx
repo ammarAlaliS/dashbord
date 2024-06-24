@@ -1,8 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Links from "./singleComponents/Links";
+import { clearToken } from "../utils/TokenManage";
 
-function SideBar({ isOpen }) {
+function SideBar({ isOpen, setAuth, redirectToHome }) {
+  const handleLogout = () => {
+    clearToken();
+    setAuth(false); 
+    redirectToHome(); 
+  };
+
   return (
     <div className={`sidebar ${isOpen ? "" : "close"}`} id="sidebar">
       <Link to="/" className="logo">
@@ -10,21 +17,21 @@ function SideBar({ isOpen }) {
         <div className="logoName">Panel</div>
       </Link>
       <ul className="sideMenu">
-        <Links to="/principal" name="Home" iconName="bx bx-home" />
-        <Links to="/quickcar" name="Quickar" iconName="bx bx-car" />  
-        <Links to="/fedetierra" name="Fedetierra" iconName="bx bx-leaf" />
-        <Links to="/shopsgrup" name="Shopsgrup" iconName="bx bx-shopping-bag" />
-        <Links to="/tucampillo" name="Tu campillo" iconName="bx bx-lemon" />
-        <Links to="/teamtouch" name="Teamtouch" iconName="bx bx-calendar-heart" />
-        <Links to="/conpicoypala" name="Conpicoypala" iconName="bx bx-hard-hat" />
-        <Links to="/obbaramarket" name="Obbaramarket" iconName="bx bx-store" />
+        <Links to="/Inicio" name="Inicio" iconName="bx bx-home" />
+        <Links to="/QuickCar" name="Quickar" iconName="bx bx-car" />  
+        <Links to="/FedeTierra" name="Fedetierra" iconName="bx bx-leaf" />
+        <Links to="/ShopsGrup" name="Shopsgrup" iconName="bx bx-shopping-bag" />
+        <Links to="/TucamPillo" name="Tu campillo" iconName="bx bx-lemon" />
+        <Links to="/TeamTouch" name="Teamtouch" iconName="bx bx-calendar-heart" />
+        <Links to="/ConpicoYpala" name="Conpicoypala" iconName="bx bx-hard-hat" />
+        <Links to="/Obbaramarket" name="Obbaramarket" iconName="bx bx-store" />
         <Links to="/roulettpromociones" name="Roulettpromociones" iconName="bx bx-dice-1" />
       </ul>
       <ul className="sideMenu">
         <li>
-          <a href="#" className="logout">
+          <button onClick={handleLogout}>
             <i className="bx bx-log-out-circle"></i> Logout
-          </a>
+          </button>
         </li>
       </ul>
     </div>
@@ -32,8 +39,3 @@ function SideBar({ isOpen }) {
 }
 
 export default SideBar;
-
-
-        
-   
-

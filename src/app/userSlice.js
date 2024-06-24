@@ -1,8 +1,9 @@
+// Ejemplo de acción setUser en userSlice
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  global_user: null,
-  driver_information: null,
+  user: null,
+  error: null,
 };
 
 const userSlice = createSlice({
@@ -10,15 +11,18 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      state.global_user = action.payload.global_user;
-      state.driver_information = action.payload.driver_information;
+      state.user = action.payload;
+      state.error = null;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
     },
     clearUser: (state) => {
-      state.global_user = null;
-      state.driver_information = null;
+      state.user = null;
+      state.error = null;
     },
   },
 });
 
-export const { setUser, clearUser } = userSlice.actions;
+export const { setUser, setError, clearUser } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,47 +1,86 @@
-// main.jsx o App.jsx
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
+import SignInPage from "./pages/SignInPage";
+import QuickCarPage from "./pages/QuickCarPage.jsx";
+import FedetierraPage from "./pages/FedetierraPage.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import TucampilloPage from "./pages/TucampilloPage.jsx";
+import { isAuthenticated } from "./utils/TokenManage.js";
+import Navbar from "./components/Navbar.jsx";
+import SideBar from "./components/SideBar.jsx";
+import "./style/navbar.css";
+import "./index.css";
 
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import './index.css';
-import App from './App';
-import SignInPage from './pages/SignInPage';
-import QuickCarPage from './pages/QuickCarPage.jsx';
-import FedetierraPage from './pages/FedetierraPage.jsx';
-import HomePage from './pages/HomePage.jsx';
-import TucampilloPage from './pages/TucampilloPage.jsx';
-import { isAuthenticated } from './utils/TokenManage.js';
+const App = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isMainContentOpen, setIsMainContentOpen] = useState(true);
+  const [isAuth, setAuth] = useState(false);
 
-const root = createRoot(document.getElementById('root'));
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
-export function PrivateRoute({ element }) {
+  const checkAuth = () => {
+    setAuth(isAuthenticated());
+  };
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+    setIsMainContentOpen(!isMainContentOpen);
+  };
+
+  const redirectToHome = () => {
+    window.location.href = "/"; // Redirige usando el objeto `window.location`
+  };
+
+  return (
+    <div className="app">
+      {!isAuth ? (
+        <SignInPage />
+      ) : (
+        <div className={`content ${isSidebarOpen ? "" : "close"}`}>
+          <SideBar
+            isOpen={isSidebarOpen}
+            setAuth={setAuth}
+            redirectToHome={redirectToHome}
+          />
+
+          <Navbar
+            isMainContentOpen={isMainContentOpen}
+            toggleSidebar={toggleSidebar}
+            isSidebarOpen={isSidebarOpen}
+          />
+          <main className="mainContent">
+            <Routes>
+              <Route path="/" element={<Navigate to="/Inicio" />} />
+              <Route path="/Inicio" element={<PrivateRoute element={<HomePage />} />} />
+              <Route path="/quickcar" element={<PrivateRoute element={<QuickCarPage />} />} />
+              <Route path="/fedetierra" element={<PrivateRoute element={<FedetierraPage />} />} />
+              <Route path="/tucampillo" element={<PrivateRoute element={<TucampilloPage />} />} />
+            </Routes>
+          </main>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export const PrivateRoute = ({ element }) => {
   return isAuthenticated() ? element : <Navigate to="/" replace />;
-}
-
-
-const routes = [
-  { path: '/', element: <SignInPage /> },
-  { path: '/quickcar', element: <PrivateRoute element={<QuickCarPage />} /> },
-  { path: '/fedetierra', element: <PrivateRoute element={<FedetierraPage />} /> },
-  { path: '/principal', element: <PrivateRoute element={<HomePage />} /> },
-  { path: '/tucampillo', element: <PrivateRoute element={<TucampilloPage />} /> },
-  { path: '/home', element: <PrivateRoute element={<App />} /> },
-];
+};
 
 const Main = () => (
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <Routes>
-          {routes.map((route, index) => (
-            <Route key={index} path={route.path} element={route.element} />
-          ))}
-        </Routes>
+        <App />
       </Router>
     </Provider>
   </React.StrictMode>
 );
 
+const root = createRoot(document.getElementById("root"));
 root.render(<Main />);

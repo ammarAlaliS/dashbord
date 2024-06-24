@@ -1,3 +1,4 @@
+// Ejemplo de actualización del estado en SignInPage
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "../app/userSlice";
@@ -34,19 +35,10 @@ export default function SignInPage() {
 
       if (response.ok) {
         if (responseData.token) {
-          setToken(responseData.token)
-          dispatch(
-            setUser({
-              first_name: responseData.first_name,
-              last_name: responseData.last_name,
-              profile_img_url: responseData.profile_img_url,
-              token: responseData.token
-            })
-          );
-          // Redirigir al usuario a la página principal
-          navigate('/home');
+          setToken(responseData.token);
+          dispatch(setUser(responseData));
+          navigate('/Inicio');
           window.location.reload();
-          
         } else {
           setError("Error: No se recibió un token válido del servidor.");
         }
