@@ -1,21 +1,32 @@
-import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import "./App.css";
+import React, { useState } from "react";
 import Navbar from "./components/Navbar.jsx";
-import Content from "./components/MainContent.jsx";
-import HomePage from "./pages/HomePage.jsx";
-import QuickCarPage from "./pages/QuickCarPage.jsx";
-import FedetierraPage from "./pages/FedetierraPage.jsx";
+import "./style/navbar.css";
+import SideBar from "./components/SideBar.jsx";
 
 function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isMainContentOpen, setIsMainContentOpen] = useState(true);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+    setIsMainContentOpen(!isMainContentOpen);
+  };
   return (
-    <Router>
-      <div className="app">
-        <Content>
-          <Navbar />
-        </Content>
+    <div className="app">
+      <div className={`content ${isSidebarOpen ? "" : "close"}`}>
+      <SideBar isOpen={isSidebarOpen} />
+        <Navbar
+          isMainContentOpen={isMainContentOpen}
+          toggleSidebar={toggleSidebar}
+          isSidebarOpen={isSidebarOpen}
+        />
+        <main class="mainContent">
+        
+        
+        </main>
+      
       </div>
-    </Router>
+    </div>
   );
 }
 
