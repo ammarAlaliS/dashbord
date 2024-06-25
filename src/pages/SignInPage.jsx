@@ -1,13 +1,14 @@
-// Ejemplo de actualización del estado en SignInPage
+// SignInPage.js
+
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setUser } from "../app/userSlice";
+import { setUser, setError } from "../app/userSlice";
 import { useNavigate } from 'react-router-dom';
 import { setToken } from "../utils/TokenManage";
 import "../style/signIn.css";
 
 export default function SignInPage() {
-  const [error, setError] = useState("");
+  const [error, setLocalError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -32,22 +33,21 @@ export default function SignInPage() {
       );
 
       const responseData = await response.json();
-
       if (response.ok) {
         if (responseData.token) {
           setToken(responseData.token);
-          dispatch(setUser(responseData));
+          dispatch(setUser(responseData)); 
+          console.log("Datos del usuario recibidos y almacenados:", responseData);
           navigate('/Inicio');
-          window.location.reload();
         } else {
-          setError("Error: No se recibió un token válido del servidor.");
+          dispatch(setError("Error: No se recibió un token válido del servidor."));
         }
       } else {
-        setError(responseData.message || "Error al iniciar sesión");
+        dispatch(setError(responseData.message || "Error al iniciar sesión"));
       }
     } catch (error) {
       console.error("Error al realizar la solicitud:", error);
-      setError("Error al conectar con el servidor. Inténtalo de nuevo más tarde.");
+      dispatch(setError("Error al conectar con el servidor. Inténtalo de nuevo más tarde."));
     }
   };
 

@@ -1,0 +1,52 @@
+.dashbord-info {
+  margin-top: 0.5em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0.5em;
+}
+.card-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--light);
+    border-radius: 1em;
+    padding: 1em;
+    border: 1px solid rgba(241, 241, 241, 0.1);
+    color: var(--dark);
+    font-size: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+.card-container-flex{
+    display: flex;
+}
+.card-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.card-info-container p{
+    font-size: 20px;
+    font-weight: 800;
+}
+.card-info-container span{
+    font-size: 16px;
+    font-weight: 800;
+}
+.card-info-icon {
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--success);
+}
+.user-chart h2{
+    text-align: center;
+}
+
+.card-container:hover{
+    background-color: var(--hover-grey);
+    border-color: var(--hover-border);
+}

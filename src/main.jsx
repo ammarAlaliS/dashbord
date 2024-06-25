@@ -11,6 +11,7 @@ import TucampilloPage from "./pages/TucampilloPage.jsx";
 import { isAuthenticated } from "./utils/TokenManage.js";
 import Navbar from "./components/Navbar.jsx";
 import SideBar from "./components/SideBar.jsx";
+import BlogPage from './pages/BlogPage.jsx'
 import "./style/navbar.css";
 import "./index.css";
 
@@ -33,7 +34,7 @@ const App = () => {
   };
 
   const redirectToHome = () => {
-    window.location.href = "/"; // Redirige usando el objeto `window.location`
+    window.location.href = "/";
   };
 
   return (
@@ -60,6 +61,7 @@ const App = () => {
               <Route path="/quickcar" element={<PrivateRoute element={<QuickCarPage />} />} />
               <Route path="/fedetierra" element={<PrivateRoute element={<FedetierraPage />} />} />
               <Route path="/tucampillo" element={<PrivateRoute element={<TucampilloPage />} />} />
+              <Route path="/quickcar/blog" element={<PrivateRoute element={<BlogPage />} />} />
             </Routes>
           </main>
         </div>

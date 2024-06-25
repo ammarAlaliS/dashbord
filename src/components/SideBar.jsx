@@ -6,22 +6,23 @@ import { clearToken } from "../utils/TokenManage";
 function SideBar({ isOpen, setAuth, redirectToHome }) {
   const handleLogout = () => {
     clearToken();
-    setAuth(false); 
+    setAuth(false);
+    alert("Seguro que quieres cerrar sesion") 
     redirectToHome(); 
   };
 
   return (
     <div className={`sidebar ${isOpen ? "" : "close"}`} id="sidebar">
       <Link to="/" className="logo">
-        <i className="bx bx-code"></i>
-        <div className="logoName">Panel</div>
+      <i class='bx bxs-dashboard'></i>
+        <div className="logoName">Panel </div>
       </Link>
       <ul className="sideMenu">
         <Links to="/Inicio" name="Inicio" iconName="bx bx-home" />
         <Links to="/QuickCar" name="Quickar" iconName="bx bx-car" />  
         <Links to="/FedeTierra" name="Fedetierra" iconName="bx bx-leaf" />
         <Links to="/ShopsGrup" name="Shopsgrup" iconName="bx bx-shopping-bag" />
-        <Links to="/TucamPillo" name="Tu campillo" iconName="bx bx-lemon" />
+        <Links to="/TuCamPillo" name="Tu campillo" iconName="bx bx-lemon" />
         <Links to="/TeamTouch" name="Teamtouch" iconName="bx bx-calendar-heart" />
         <Links to="/ConpicoYpala" name="Conpicoypala" iconName="bx bx-hard-hat" />
         <Links to="/Obbaramarket" name="Obbaramarket" iconName="bx bx-store" />

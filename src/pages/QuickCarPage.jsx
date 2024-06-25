@@ -1,23 +1,32 @@
 import React from "react";
-import "../style/navbar.css";
-import { Link, useLocation } from "react-router-dom";
-function QuickCarPage() {
-  const location = useLocation();
-
-  const getLastPartOfPath = () => {
-    const path = location.pathname;
-    const lastSlashIndex = path.lastIndexOf("/");
-    return path.substring(lastSlashIndex + 1);
-  };
-
+import Greeting from "../components/Greeting";
+import DashbordContainerInfo from "../components/singleComponents/DashbordContainerInfo";
+import "../style/card.css";
+export default function QuickCarPage() {
   return (
-    <div className="titleSection">
-      <h2>{getLastPartOfPath()}</h2>
-      <Link to="/resume">
-        <button>get resume</button>
-      </Link>
+    <div>
+      <Greeting />
+      <div className="dashbord-info">
+        <DashbordContainerInfo
+          iconName="ImUserPlus"
+          backendInfo={30}
+          name="Todos los usuarios"
+          grafico="UserChart"
+        />
+        <DashbordContainerInfo
+          iconName="GiBookCover"
+          backendInfo={30}
+          name="Todos los blogs"
+          grafico="Grafico"
+          to="/QuickCar/Blog"
+        />
+        <DashbordContainerInfo
+          iconName="FaCartShopping"
+          backendInfo={30}
+          name="Todos los productos"
+          grafico="UserChart"
+        />
+      </div>
     </div>
   );
 }
-
-export default QuickCarPage

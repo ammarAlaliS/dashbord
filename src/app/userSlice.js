@@ -1,8 +1,9 @@
-// Ejemplo de acción setUser en userSlice
+// userSlice.js
+
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  user: null,
+  user: true,
   error: null,
 };
 

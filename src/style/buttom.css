@@ -1,0 +1,29 @@
+
+.buttom-box {
+    display: flex;
+    gap: 10px;
+}
+.buttom-box button:first-child{
+    height: 0;
+    padding: 1.3em 1em;
+    background-color: var(--warning);
+    color: #fff;
+    border-radius: 0.5em;
+    border: 1px solid var(--light);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.buttom-box button:last-child{
+    height: 0;
+    padding: 1.3em 1em;
+    background-color: var(--primary);
+    color: #fff;
+    border-radius: 0.5em;
+    border: 1px solid var(--light);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}

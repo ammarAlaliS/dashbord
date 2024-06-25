@@ -21,15 +21,15 @@
 }
 
 .sidebar .logo{
-    font-size: 24px;
+    font-size: 2em;
     font-weight: 700;
     height: 56px;
     display: flex;
     align-items: center;
     color: var(--primary);
     z-index: 500;
-    padding-bottom: 20px;
     box-sizing: content-box;
+
 }
 
 .sidebar .logo .logoName span{
@@ -99,6 +99,7 @@
     transition: all 0.3s ease;
     padding: 0px 10px;
     gap: 10px;
+   
 }
 
 .sidebar .sideMenu li button {
@@ -117,6 +118,7 @@
     color: var(--danger);
     background-color: var(--light);
     cursor: pointer;
+    border: 1px solid rgba(241, 241, 241, 0.1);
     
 
 }
@@ -125,6 +127,7 @@
     color: var(--success); 
     padding: 0px 10px;
     gap: 10px;
+    border: 1px solid rgba(241, 241, 241, 0.1);
 }
 
 .sidebar.close .sideMenu li a {
@@ -150,6 +153,7 @@
 
 .sidebar .sideMenu li a.logout{
     color: var(--danger);
+   
 }
 
 .content{
@@ -183,7 +187,8 @@
     z-index: 1000;
     overflow-y: hidden;
     overflow-x: scroll;
-    transition: all 0.3s ease;
+    transition: left 0.3s ease-out;
+
     
 }
 .navbar.close{
@@ -221,6 +226,9 @@
     background: var(--grey);
     outline: none;
     border-radius: 36px 0 0 36px;
+    color: var(--dark);
+    border: 1px solid rgba(241, 241, 241, 0.1);
+    font-weight: 500;
 
 }
 .content nav form .formInput button{
@@ -229,7 +237,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: none;
     background: var(--primary);
     color: var(--light);
@@ -240,7 +247,6 @@
 
 }
 .content nav .notification{
-
     font-size: 20px;
     position: relative;
     display: flex;
@@ -258,7 +264,6 @@
     border: 2px solid var(--light);
     font-weight: 700;
     font-size: 12px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -281,7 +286,8 @@
     cursor: pointer;
     position: relative;
     border-radius: 36px;
-    transition: all 0.3s ease;
+    border: 1px solid rgba(241, 241, 241, 0.1);
+
 }
 .content nav .theme_toggle::before {
     content: "🌙";  
@@ -292,7 +298,6 @@
     width: calc(25px - 4px);
     border-radius: 50%;
     background: var(--light-primary);
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -305,6 +310,7 @@
     align-items: center;
     justify-content: center;
     left: calc(100% - (25px - 4px) - 2px);
+
 }
 
 .mainContent{
@@ -320,13 +326,23 @@
     justify-content: space-between;
     flex-direction: column;
     flex-wrap: wrap;
-    font-size: 1em;
+    font-size: 0.8rem;
     padding: 1em 1em;
     border-radius: 0.5em;
     background-color: var(--light);
     flex: 1;
     color: var(--dark);
+    border: 1px solid rgba(241, 241, 241, 0.1);
 
+}
+.iconHeader{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.bx-home2{
+    margin-bottom: 6px;
+    font-size: 30px !important;
 }
 .greetingAndTime{
     display: flex;
@@ -348,18 +364,7 @@
 .greeting{
     font-size: 1rem;
 }
-.mainContent .titleSection button{
-    height: 0;
-    padding: 1.5em 1em;
-    background-color: var(--primary);
-    color: var(--dark);
-    border-radius: 0.5em;
-    border: 1px solid var(--light);
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
+
 
 .grid{
     height: auto;
@@ -367,6 +372,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap:0.5em;
+    
 }
 .grid div{
     background:var(--light);
@@ -375,6 +381,7 @@
     display: flex;
     gap: 1em;
     padding: 1%;
+  
 
 }
 .grid article{
@@ -432,7 +439,7 @@
 .grid-two{
     margin-top: 0.5em;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
    gap: 0.5em;
 }
 
@@ -442,6 +449,10 @@
     background-color: var(--light);
     border-radius: 1em;
     padding: 1em;
+    border: 1px solid rgba(241, 241, 241, 0.1);
+    color: var(--dark);
+    font-size: 10px;
+
 }
 .section-header, .section-nav {
     display: flex;
@@ -454,38 +465,17 @@
     justify-content: space-between;
     gap: 1em;
 }
-table{
- background-color: red;
-}
-.reminders-section{
-     background: var(--light);
-     border-radius: 1em;
-     padding: 1em;
-}
-
-.mainGrid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    gap: 0.5em;
-}
-.mainGrid .bx{
+.greeting-buttom{
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 
-/* media */
 
-@media screen and (min-width:320px )and (max-width:768px) {
-    .content nav form{
-        max-width: 250px;
-        width: 100%;
-        margin-right: auto;
-       
-    }
-    .formActive{
-        min-width: 100px;
-        transition: all 0.3s ease;
-    }
-}
+
+
+
+
+
