@@ -40,9 +40,6 @@ export default function Greeting() {
     weekday: "long",
   });
   const time = currentDateTime.toLocaleTimeString();
-
-  console.log("User in Greeting:", user);
-
   return (
     <div className="titleSection">
       <div className="greetingAndTime">

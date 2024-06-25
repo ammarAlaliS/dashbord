@@ -11,12 +11,20 @@ const CreateBlog = () => {
     });
 
     const handleChange = (e, index = null) => {
-        const { name, value } = e.target;
+        const { name, value, files } = e.target;
         if (index === null) {
-            setBlogData(prevState => ({
-                ...prevState,
-                [name]: value
-            }));
+            // Si es un campo de archivo (blog_image_url), guardar el archivo en lugar del valor
+            if (name === 'blog_image_url') {
+                setBlogData(prevState => ({
+                    ...prevState,
+                    [name]: files[0]  // Guardar el archivo
+                }));
+            } else {
+                setBlogData(prevState => ({
+                    ...prevState,
+                    [name]: value
+                }));
+            }
         } else {
             const updatedSections = [...blogData.sections];
             updatedSections[index][name] = value;
@@ -47,10 +55,7 @@ const CreateBlog = () => {
                 formData.append(`sections[${index}][title]`, section.title);
                 formData.append(`sections[${index}][content]`, section.content);
             });
-    
-            // Verifica que la imagen esté correctamente cargada antes de enviarla
-            console.log(formData.get('blog_image_url'));
-    
+            
             const response = await axios.post('https://obbaramarket-backend-1.onrender.com/api/ObbaraMarket/create/blog', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -66,7 +71,6 @@ const CreateBlog = () => {
             }
         }
     };
-    
 
     return (
         <div className="create-blog-container">
@@ -105,4 +109,5 @@ const CreateBlog = () => {
         </div>
     );
 }
+
 export default CreateBlog;

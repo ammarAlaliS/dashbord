@@ -121,7 +121,7 @@
     height: 0;
     padding: 1.2em 1em;
     width: 145px;
-    background-color: var(--primary);
+    background-color: var(--success);
     color: #fff;
     border-radius: 0.2em;
     border: 1px solid var(--light);
