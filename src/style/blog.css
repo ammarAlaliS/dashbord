@@ -54,14 +54,6 @@
 
 }
 
-.create-blog-container .form-group input[type="file"]{
-    width: min-content;
-    background-color: var(--grey);
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid rgba(241, 241, 241, 0.1);
-  
-}
 .create-blog-container .form-group input[type="text"]{
     border: 1px solid rgba(241, 241, 241, 0.1);
     background-color: var(--grey);
@@ -70,6 +62,13 @@
     color: var(--dark);
 }
 .create-blog-container .form-group input {
+    border: 1px solid rgba(241, 241, 241, 0.1);
+    background-color: var(--grey);
+    padding: 5px;
+    outline: none;
+    color: var(--dark);
+}
+.create-blog-container .form-group textarea {
     border: 1px solid rgba(241, 241, 241, 0.1);
     background-color: var(--grey);
     padding: 5px;
@@ -115,6 +114,7 @@
     padding: 5px;
     outline: none;
     color: var(--dark);
+    height: auto;
 }
 
 .create-blog-container .add-section-btn {
@@ -132,11 +132,25 @@
     justify-content: center;
     margin-bottom: 10px;
 }
+.delete{
+    height: 0;
+    padding: 1.2em 1em;
+    width: 145px;
+    background-color: var(--danger);
+    color: #fff;
+    border-radius: 0.2em;
+    border: 1px solid var(--light);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
 
 .create-blog-container .submit-btn {
     height: 0;
     padding: 1.2em 1em;
-
     background-color: var(--primary);
     color: #fff;
     border-radius: 0.2em;
@@ -146,6 +160,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.success-message{
+    color: var(--success);
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 10px;
+}
+.error-message2{
+    color: var(--danger);
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 10px;
+}
+.file{
+    width: 135px;
+    background-color: var(--grey);
+    border-radius: 5px;
+    border: 1px solid rgba(241, 241, 241, 0.1);
+    padding: 0 !important;
+}
+.file-and-img{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 

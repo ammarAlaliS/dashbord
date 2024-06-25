@@ -121,24 +121,12 @@ const CreateBlog = () => {
       clearForm();
     } catch (error) {
       console.error("Error al crear el blog:", error);
-      if (error.response) {
-        console.log(error.response.data); // Mostrar detalle del error del servidor
-        if (error.response.data.errors) {
-          setErrors(error.response.data.errors);
-        } else if (error.response.data.message) {
-          setErrors({
-            global: `Hubo un error al crear el blog: ${error.response.data.message}. Por favor, intenta de nuevo más tarde.`,
-          });
-        } else {
-          setErrors({
-            global:
-              "Hubo un error al crear el blog. Por favor, intenta de nuevo más tarde.",
-          });
-        }
+      if (error.response && error.response.data.errors) {
+        setErrors(error.response.data.errors);
       } else {
         setErrors({
           global:
-            "Hubo un error al conectar con el servidor. Por favor, intenta de nuevo más tarde.",
+            "Hubo un error al crear el blog. Por favor, intenta de nuevo más tarde.",
         });
       }
     }
@@ -307,7 +295,7 @@ const CreateBlog = () => {
           Crear Blog
         </button>
         {successMessage && <p className="success-message">{successMessage}</p>}
-        {errors.global && <p className="error-message">{errors.global}</p>}
+        {errors.global && <p className="error-message2">{errors.global}</p>}
       </form>
     </div>
   );
