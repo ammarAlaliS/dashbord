@@ -6,6 +6,7 @@ import { store } from "./app/store";
 import SignInPage from "./pages/SignInPage";
 import QuickCarPage from "./pages/QuickCarPage.jsx";
 import FedetierraPage from "./pages/FedetierraPage.jsx";
+import CreateBlogPage from './pages/CreateBlogPage.jsx'
 import HomePage from "./pages/HomePage.jsx";
 import TucampilloPage from "./pages/TucampilloPage.jsx";
 import { isAuthenticated } from "./utils/TokenManage.js";
@@ -61,7 +62,8 @@ const App = () => {
               <Route path="/quickcar" element={<PrivateRoute element={<QuickCarPage />} />} />
               <Route path="/fedetierra" element={<PrivateRoute element={<FedetierraPage />} />} />
               <Route path="/tucampillo" element={<PrivateRoute element={<TucampilloPage />} />} />
-              <Route path="/quickcar/blog" element={<PrivateRoute element={<BlogPage />} />} />
+              <Route path="/QuickCar/Blog" element={<PrivateRoute element={<BlogPage />} />} />
+              <Route path="/QuickCar/Blog/Crear" element={<PrivateRoute element={<CreateBlogPage />} />} />
             </Routes>
           </main>
         </div>

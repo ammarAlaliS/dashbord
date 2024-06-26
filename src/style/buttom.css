@@ -3,7 +3,7 @@
     display: flex;
     gap: 10px;
 }
-.buttom-box button:first-child{
+.link-crear{
     height: 0;
     padding: 1.3em 1em;
     background-color: var(--warning);

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser, setError } from "../app/userSlice";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { setToken } from "../utils/TokenManage";
 import "../style/signIn.css";
 
@@ -11,10 +11,12 @@ export default function SignInPage() {
   const [error, setLocalError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const redirectToHome = () => {
+    window.location.href = "/Inicio";
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     try {
       const formData = {
         email: e.target.email.value,
@@ -36,18 +38,27 @@ export default function SignInPage() {
       if (response.ok) {
         if (responseData.token) {
           setToken(responseData.token);
-          dispatch(setUser(responseData)); 
-          console.log("Datos del usuario recibidos y almacenados:", responseData);
-          navigate('/Inicio');
+          dispatch(setUser(responseData));
+          console.log(
+            "Datos del usuario recibidos y almacenados:",
+            responseData
+          );
+          redirectToHome()
         } else {
-          dispatch(setError("Error: No se recibió un token válido del servidor."));
+          dispatch(
+            setError("Error: No se recibió un token válido del servidor.")
+          );
         }
       } else {
         dispatch(setError(responseData.message || "Error al iniciar sesión"));
       }
     } catch (error) {
       console.error("Error al realizar la solicitud:", error);
-      dispatch(setError("Error al conectar con el servidor. Inténtalo de nuevo más tarde."));
+      dispatch(
+        setError(
+          "Error al conectar con el servidor. Inténtalo de nuevo más tarde."
+        )
+      );
     }
   };
 
@@ -56,7 +67,9 @@ export default function SignInPage() {
       <div className="">
         <form className="login-form" onSubmit={handleSubmit}>
           <h2 className="login-heading">Iniciar sesión</h2>
-          <h4 className="h4">Solo los administradores pueden iniciar sesión.</h4>
+          <h4 className="h4">
+            Solo los administradores pueden iniciar sesión.
+          </h4>
           <div className="form-group">
             <label htmlFor="email" className="form-label">
               Email:

@@ -1,8 +1,8 @@
 .blogContainer{
-    margin-top: 0.5em;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 0.5em;
+    padding-bottom: 10px;
 }
 .createBlogContainer{
     display: flex;
@@ -95,6 +95,17 @@
     gap: 5px;
 }
 
+.create-blog-container .section div input{
+    border: 1px solid rgba(241, 241, 241, 0.1);
+    background-color: var(--grey);
+    padding: 5px;
+    outline: none;
+    color: var(--dark);
+    width: 100%;
+}
+
+
+
 .create-blog-container .section label {
     font-size: 0.8rem;
     color: var(--warning);
@@ -116,6 +127,10 @@
     color: var(--dark);
     height: auto;
 }
+.buttons-container{
+    display: flex;
+    gap: 10px;
+}
 
 .create-blog-container .add-section-btn {
     height: 0;
@@ -123,6 +138,36 @@
     width: 145px;
     background-color: var(--success);
     color: #fff;
+    border-radius: 0.2em;
+    border: 1px solid var(--light);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.add-list-btn{
+    height: 0;
+    padding: 1.2em 1em;
+    width: 145px;
+    background-color: var(--warning);
+    color: #000;
+    border-radius: 0.2em;
+    border: 1px solid var(--light);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.add-content-btn{
+    height: 0;
+    padding: 1.2em 1em;
+    width: 145px;
+    background-color: var(--primary);
+    color: var(--dark);
     border-radius: 0.2em;
     border: 1px solid var(--light);
     font-weight: 600;
@@ -185,5 +230,11 @@
     align-items: center;
     justify-content: space-between;
 }
+.list-item input {
+   margin-bottom: 10px;
+}
+.list-item textarea {
+    width: 100%;
+ }
 
 
