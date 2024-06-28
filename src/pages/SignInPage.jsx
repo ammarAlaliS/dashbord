@@ -20,7 +20,7 @@ export default function SignInPage({ setAuth }) {
       };
 
       const response = await fetch(
-        "https://obbaramarket-backend-1.onrender.com/api/ObbaraMarket/login",
+        "https://obbaramarket-backend.onrender.com/api/ObbaraMarket/login",
         {
           method: "POST",
           headers: {

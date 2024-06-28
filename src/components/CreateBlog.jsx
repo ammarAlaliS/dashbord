@@ -164,7 +164,7 @@ const CreateBlog = ({ blogData, onChange }) => {
       });
 
       const response = await axios.post(
-        "https://obbaramarket-backend-1.onrender.com/api/ObbaraMarket/create/blog",
+        "https://obbaramarket-backend.onrender.com/api/ObbaraMarket/create/blog",
         formData,
         {
           headers: {

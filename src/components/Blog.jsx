@@ -5,7 +5,7 @@ import { AiOutlineLike } from "react-icons/ai";
 import { Audio } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 
-const API_BASE_URL = "https://obbaramarket-backend-1.onrender.com";
+const API_BASE_URL = "https://obbaramarket-backend.onrender.com";
 
 export default function Blog() {
   const [blogs, setBlogs] = useState([]);
