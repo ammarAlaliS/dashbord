@@ -18,7 +18,6 @@ export default function SignInPage({ setAuth }) {
         email: e.target.email.value,
         password: e.target.password.value,
       };
-
       const response = await fetch(
         "https://obbaramarket-backend.onrender.com/api/ObbaraMarket/login",
         {
