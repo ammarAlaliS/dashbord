@@ -163,7 +163,6 @@
     transition: all 0.3s ease;
     display: flex;
     height: 100dvh;
-    background-color: rebeccapurple;
 }
 
 .close{
