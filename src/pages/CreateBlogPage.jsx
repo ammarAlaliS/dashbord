@@ -5,13 +5,17 @@ import "../style/blog.css";
 
 export default function BlogPage() {
   const [blogData, setBlogData] = useState({
-    blog_image_url: "",
+    blog_image_url: [], 
     title: "",
-    tags: "",
+    tags: [], 
     blog_description: "",
-    sections: [{ title: "", content: [], list: [] }],
+    sections: [{
+      title: "",
+      content: [], 
+      list: [],     
+      links: []   
+    }],
   });
-
   const handleBlogDataChange = (newBlogData) => {
     setBlogData(newBlogData);
   };
@@ -19,7 +23,7 @@ export default function BlogPage() {
   return (
     <div className="blogContainer">
       <div className="createBlogContainer">
-        <CreateBlog blogData={blogData} onChange={handleBlogDataChange} />
+        <CreateBlog blogData={blogData} setBlogData={setBlogData} onChange={handleBlogDataChange} />
       </div>
       <div className="previewBlogContainer">
         <PreviewBlog blogData={blogData} />
