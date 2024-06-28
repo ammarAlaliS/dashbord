@@ -36,13 +36,13 @@ const App = () => {
   };
 
   const redirectToHome = () => {
-    window.location.href = "/";
+    navigate('/Inicio');
   };
 
   return (
     <div className="app">
       {!isAuth ? (
-        <SignInPage />
+        <SignInPage setAuth={setAuth} />
       ) : (
         <div className={`content ${isSidebarOpen ? "" : "close"}`}>
           <SideBar
@@ -62,13 +62,13 @@ const App = () => {
           <main className="mainContent">
             <Routes>
               <Route path="/" element={<Navigate to="/Inicio" />} />
-              <Route path="/Inicio" element={<PrivateRoute element={<HomePage />} />} />
-              <Route path="/quickcar" element={<PrivateRoute element={<QuickCarPage />} />} />
-              <Route path="/fedetierra" element={<PrivateRoute element={<FedetierraPage />} />} />
-              <Route path="/tucampillo" element={<PrivateRoute element={<TucampilloPage />} />} />
-              <Route path="/QuickCar/Blog" element={<PrivateRoute element={<BlogPage />} />} />
-              <Route path="/QuickCar/Blog/Crear" element={<PrivateRoute element={<CreateBlogPage />} />} />
-              <Route path="/QuickCar/Blog/Contenido/:blogId" element={<PrivateRoute element={<BlogPageInfo />} />} />
+              <Route path="/Inicio" element={<HomePage />} />
+              <Route path="/quickcar" element={<QuickCarPage />} />
+              <Route path="/fedetierra" element={<FedetierraPage />} />
+              <Route path="/tucampillo" element={<TucampilloPage />} />
+              <Route path="/QuickCar/Blog" element={<BlogPage />} />
+              <Route path="/QuickCar/Blog/Crear" element={<CreateBlogPage />} />
+              <Route path="/QuickCar/Blog/Contenido/:blogId" element={<BlogPageInfo />} />
             </Routes>
           </main>
         </div>

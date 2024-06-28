@@ -36,7 +36,7 @@ const CreateBlog = ({ blogData, onChange }) => {
       if (name === "blog_image_url") {
         onChange({
           ...blogData,
-          [name]: files[0],
+          [name]: files[0], // Asignar directamente el archivo seleccionado
         });
       } else {
         onChange({
@@ -124,7 +124,7 @@ const CreateBlog = ({ blogData, onChange }) => {
 
   const limpiarFormulario = () => {
     onChange({
-      blog_image_url: "",
+      blog_image_url: "", // Limpiar la URL de la imagen al limpiar el formulario
       title: "",
       tags: "",
       blog_description: "",
@@ -223,6 +223,7 @@ const CreateBlog = ({ blogData, onChange }) => {
     // El formulario es válido si no hay errores
     return Object.keys(nuevosErrores).length === 0;
   };
+
   return (
     <div className="create-blog-container">
       <h2>Crear Nuevo Blog</h2>
@@ -239,38 +240,17 @@ const CreateBlog = ({ blogData, onChange }) => {
               placeholder="Selecciona una imagen..."
               className="file"
             />
-            <img
-              style={{ width: "100px", height: "100px", objectFit: "cover" }}
-              src={
-                blogData.blog_image_url instanceof File
-                  ? URL.createObjectURL(blogData.blog_image_url)
-                  : blogData.blog_image_url
-              }
-              alt=""
-            />
-          </div>
-        </div>
-        <div className="form-group">
-          <label htmlFor="blog_image_url">Imagen:</label>
-          <div className="file-and-img">
-            <input
-              type="file"
-              name="blog_image_url"
-              id="blog_image_url"
-              onChange={(e) => handleChange(e)}
-              required
-              placeholder="Selecciona una imagen..."
-              className="file"
-            />
-            <img
-              style={{ width: "100px", height: "100px", objectFit: "cover" }}
-              src={
-                blogData.blog_image_url instanceof File
-                  ? URL.createObjectURL(blogData.blog_image_url)
-                  : blogData.blog_image_url
-              }
-              alt=""
-            />
+            {blogData.blog_image_url && (
+              <img
+                style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                src={
+                  blogData.blog_image_url instanceof File
+                    ? URL.createObjectURL(blogData.blog_image_url)
+                    : blogData.blog_image_url
+                }
+                alt="Preview"
+              />
+            )}
           </div>
         </div>
         <div className="form-group">
@@ -394,7 +374,7 @@ const CreateBlog = ({ blogData, onChange }) => {
               className="add-section-btn"
               onClick={agregarSeccion}
             >
-              Agregar Sección
+              Sección
             </button>
             {blogData.sections.length > 0 && (
               <button
@@ -404,7 +384,7 @@ const CreateBlog = ({ blogData, onChange }) => {
                   agregarListaSeccion(blogData.sections.length - 1)
                 }
               >
-                Agregar Lista
+                Lista
               </button>
             )}
             {blogData.sections.length > 0 && (
@@ -415,7 +395,7 @@ const CreateBlog = ({ blogData, onChange }) => {
                   agregarContenidoSeccion(blogData.sections.length - 1)
                 }
               >
-                Agregar Párrafo
+                Párrafo
               </button>
             )}
           </div>

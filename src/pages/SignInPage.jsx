@@ -1,5 +1,3 @@
-// SignInPage.js
-
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser, setError } from "../app/userSlice";
@@ -7,13 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { setToken } from "../utils/TokenManage";
 import "../style/signIn.css";
 
-export default function SignInPage() {
+export default function SignInPage({ setAuth }) {
   const [error, setLocalError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const redirectToHome = () => {
-    window.location.href = "/Inicio";
-  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -39,26 +35,18 @@ export default function SignInPage() {
         if (responseData.token) {
           setToken(responseData.token);
           dispatch(setUser(responseData));
-          console.log(
-            "Datos del usuario recibidos y almacenados:",
-            responseData
-          );
-          redirectToHome()
+          console.log("Datos del usuario recibidos y almacenados:", responseData);
+          setAuth(true); // Actualiza el estado de autenticación en App.js
+          navigate('/Inicio'); // Redirige al usuario a la página de inicio
         } else {
-          dispatch(
-            setError("Error: No se recibió un token válido del servidor.")
-          );
+          dispatch(setError("Error: No se recibió un token válido del servidor."));
         }
       } else {
         dispatch(setError(responseData.message || "Error al iniciar sesión"));
       }
     } catch (error) {
       console.error("Error al realizar la solicitud:", error);
-      dispatch(
-        setError(
-          "Error al conectar con el servidor. Inténtalo de nuevo más tarde."
-        )
-      );
+      dispatch(setError("Error al conectar con el servidor. Inténtalo de nuevo más tarde."));
     }
   };
 
@@ -67,13 +55,9 @@ export default function SignInPage() {
       <div className="">
         <form className="login-form" onSubmit={handleSubmit}>
           <h2 className="login-heading">Iniciar sesión</h2>
-          <h4 className="h4">
-            Solo los administradores pueden iniciar sesión.
-          </h4>
+          <h4 className="h4">Solo los administradores pueden iniciar sesión.</h4>
           <div className="form-group">
-            <label htmlFor="email" className="form-label">
-              Email:
-            </label>
+            <label htmlFor="email" className="form-label">Email:</label>
             <input
               type="text"
               id="email"
@@ -84,9 +68,7 @@ export default function SignInPage() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password" className="form-label">
-              Contraseña:
-            </label>
+            <label htmlFor="password" className="form-label">Contraseña:</label>
             <input
               type="password"
               id="password"
@@ -97,9 +79,7 @@ export default function SignInPage() {
             />
           </div>
           {error && <p className="error-message">{error}</p>}
-          <button type="submit" className="submit-button">
-            Iniciar sesión
-          </button>
+          <button type="submit" className="submit-button">Iniciar sesión</button>
         </form>
       </div>
     </div>

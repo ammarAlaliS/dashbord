@@ -18,11 +18,12 @@ const PreviewBlog = ({ blogData }) => {
       {blogData.blog_image_url && (
         <img
           src={
-            blogData.blog_image_url.length > 0
-              ? URL.createObjectURL(blogData.blog_image_url[0])
-              : ""
+            blogData.blog_image_url instanceof File
+              ? URL.createObjectURL(blogData.blog_image_url)
+              : blogData.blog_image_url
           }
           alt="Blog Preview"
+          style={{ width: "100%", maxHeight: "400px", objectFit: "cover" }}
         />
       )}
       <h3>{blogData.title}</h3>
