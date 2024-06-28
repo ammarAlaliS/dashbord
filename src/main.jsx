@@ -7,6 +7,7 @@ import SignInPage from "./pages/SignInPage";
 import QuickCarPage from "./pages/QuickCarPage.jsx";
 import FedetierraPage from "./pages/FedetierraPage.jsx";
 import CreateBlogPage from './pages/CreateBlogPage.jsx'
+import BlogPageInfo from "./pages/BlogPageInfo.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import TucampilloPage from "./pages/TucampilloPage.jsx";
 import { isAuthenticated } from "./utils/TokenManage.js";
@@ -17,8 +18,8 @@ import "./style/navbar.css";
 import "./index.css";
 
 const App = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [isMainContentOpen, setIsMainContentOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isMainContentOpen, setIsMainContentOpen] = useState(false);
   const [isAuth, setAuth] = useState(false);
 
   useEffect(() => {
@@ -46,8 +47,11 @@ const App = () => {
         <div className={`content ${isSidebarOpen ? "" : "close"}`}>
           <SideBar
             isOpen={isSidebarOpen}
+            isMainContentOpen={isMainContentOpen}
             setAuth={setAuth}
             redirectToHome={redirectToHome}
+            setIsMainContentOpen={setIsMainContentOpen}
+            setIsSidebarOpen={setIsSidebarOpen}
           />
 
           <Navbar
@@ -64,6 +68,7 @@ const App = () => {
               <Route path="/tucampillo" element={<PrivateRoute element={<TucampilloPage />} />} />
               <Route path="/QuickCar/Blog" element={<PrivateRoute element={<BlogPage />} />} />
               <Route path="/QuickCar/Blog/Crear" element={<PrivateRoute element={<CreateBlogPage />} />} />
+              <Route path="/QuickCar/Blog/Contenido/:blogId" element={<PrivateRoute element={<BlogPageInfo />} />} />
             </Routes>
           </main>
         </div>
