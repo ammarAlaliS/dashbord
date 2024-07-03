@@ -9,7 +9,7 @@
     background-color: var(--warning);
     color: #fff;
     border-radius: 0.5em;
-    border: 1px solid var(--light);
+    border: 1px solid var(--border-dark);
     font-weight: 600;
     cursor: pointer;
     display: flex;
@@ -21,7 +21,7 @@
     background-color: var(--primary);
     color: #fff;
     border-radius: 0.5em;
-    border: 1px solid var(--light);
+    border: 1px solid var(--border-dark);
     font-weight: 600;
     cursor: pointer;
     display: flex;

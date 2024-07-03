@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SideBar from "./SideBar";
 import "../style/navbar.css";
 
-function Navbar({ isMainContentOpen, toggleSidebar }) {
+function Navbar({ isSidebarOpen, toggleSidebar }) {
   const [isChecked, setIsChecked] = useState(true);
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -17,7 +17,7 @@ function Navbar({ isMainContentOpen, toggleSidebar }) {
 
   return (
     <>
-      <nav className={`navbar ${isMainContentOpen ? '' : 'close'}`}>
+      <nav className={`navbar ${isSidebarOpen ? '' : 'close'}`}>
         <i className="bx bx-menu" id="btn" onClick={toggleSidebar}></i>
         <form action="#">
           <div className="formInput formActive">

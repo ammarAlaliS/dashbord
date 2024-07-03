@@ -9,7 +9,7 @@ const PreviewBlog = ({ blogData }) => {
         <li key={index}>{tag.trim()}</li>
       ));
     }
-    return null; // o puedes devolver un mensaje indicando que no hay etiquetas
+    return null; 
   };
 
   return (

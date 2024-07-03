@@ -1,11 +1,14 @@
 import React from "react";
 import Greeting from "../components/Greeting";
 import DashbordContainerInfo from "../components/singleComponents/DashbordContainerInfo";
+import LinkElement from "../components/singleComponents/linkElement";
+
 import "../style/card.css";
 export default function QuickCarPage() {
   return (
     <div>
       <Greeting />
+      <LinkElement/>
       <div className="dashbord-info">
         <DashbordContainerInfo
           iconName="ImUserPlus"

@@ -1,0 +1,33 @@
+.LinkComponentContainer{
+    display: flex;
+    background-color: var(--light);
+    border-radius: 0em;
+    padding: 0.5em 1em;
+    border: 1px solid var(--border-dark);
+    color: var(--dark);
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 10px;
+    position: sticky;
+    top: 56px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+.LinkComponentContainer ul {
+    display: flex;
+    gap: 10px;
+}
+.LinkComponentContainer ul li .link{
+    background-color: var(--grey);;
+    border: 1px solid var(--border-dark);
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-size: 12px;
+    color: var(--dark);
+    font-weight: 600;
+
+}
+.activeLink{
+    background-color: var(--primary) !important;
+    color: #fff !important;
+}

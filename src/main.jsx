@@ -1,26 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import { createRoot } from "react-dom/client";
-import { Provider } from "react-redux";
-import { store } from "./app/store";
 import SignInPage from "./pages/SignInPage";
 import QuickCarPage from "./pages/QuickCarPage.jsx";
 import FedetierraPage from "./pages/FedetierraPage.jsx";
-import CreateBlogPage from './pages/CreateBlogPage.jsx'
+import CreateBlogPage from "./pages/CreateBlogPage.jsx";
 import BlogPageInfo from "./pages/BlogPageInfo.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import TucampilloPage from "./pages/TucampilloPage.jsx";
 import { isAuthenticated } from "./utils/TokenManage.js";
 import Navbar from "./components/Navbar.jsx";
 import SideBar from "./components/SideBar.jsx";
-import BlogPage from './pages/BlogPage.jsx'
+import BlogPage from "./pages/BlogPage.jsx";
 import "./style/navbar.css";
 import "./index.css";
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMainContentOpen, setIsMainContentOpen] = useState(false);
   const [isAuth, setAuth] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     checkAuth();
@@ -32,11 +36,10 @@ const App = () => {
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
-    setIsMainContentOpen(!isMainContentOpen);
   };
 
   const redirectToHome = () => {
-    navigate('/Inicio');
+    navigate("/Inicio");
   };
 
   return (
@@ -46,16 +49,14 @@ const App = () => {
       ) : (
         <div className={`content ${isSidebarOpen ? "" : "close"}`}>
           <SideBar
-            isOpen={isSidebarOpen}
-            isMainContentOpen={isMainContentOpen}
+            isSidebarOpen={isSidebarOpen}
             setAuth={setAuth}
             redirectToHome={redirectToHome}
-            setIsMainContentOpen={setIsMainContentOpen}
             setIsSidebarOpen={setIsSidebarOpen}
+            
           />
 
           <Navbar
-            isMainContentOpen={isMainContentOpen}
             toggleSidebar={toggleSidebar}
             isSidebarOpen={isSidebarOpen}
           />
@@ -68,7 +69,10 @@ const App = () => {
               <Route path="/tucampillo" element={<TucampilloPage />} />
               <Route path="/QuickCar/Blog" element={<BlogPage />} />
               <Route path="/QuickCar/Blog/Crear" element={<CreateBlogPage />} />
-              <Route path="/QuickCar/Blog/Contenido/:blogId" element={<BlogPageInfo />} />
+              <Route
+                path="/QuickCar/Leer/Blog/:id"
+                element={<BlogPageInfo />}
+              />
             </Routes>
           </main>
         </div>
@@ -83,11 +87,9 @@ export const PrivateRoute = ({ element }) => {
 
 const Main = () => (
   <React.StrictMode>
-    <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </Provider>
+    <Router>
+      <App />
+    </Router>
   </React.StrictMode>
 );
 

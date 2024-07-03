@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 ::-webkit-scrollbar {
-    width: 7px; 
+    width: 5px; 
     height: 0%;
   }
   
@@ -11,7 +11,8 @@
   }
   
   ::-webkit-scrollbar-thumb {
-    background-color: #888; 
+    background-color: #15113C;
+    cursor: pointer; 
   }
 
 :root{
@@ -31,6 +32,8 @@
     --light-success: #bbf7d8;
     --hover-border: rgba(23, 23, 23, 0.1);
     --pink:#f41653;
+
+    --border-dark:rgba(184, 182, 182, 0.457);
 }
 *{
     margin: 0;
@@ -60,6 +63,8 @@ body.dark{
     --dark: #fbfbfb;
     --hover-border: rgba(255, 255, 255, 0.3);
     --hover-grey: rgba(178, 178, 178, 0.1);
+    --border-dark:rgba(255, 255, 255, 0.13);
+    
 }
 body{
     background: var(--grey);

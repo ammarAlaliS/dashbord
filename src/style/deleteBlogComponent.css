@@ -1,0 +1,140 @@
+.DeleteBlogComponentMainContainer{
+    background-color: #6a6a6a1c;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+    backdrop-filter: blur(10px);
+}
+
+.DeleteBlogComponentContainer{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px; 
+    height: min-content; 
+    background-color: var(--light);
+    border: 1px solid var(--border-dark);
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.DeleteIconContainer{
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+.DeleteIconContainer div {
+    background-color: #4a4a4a !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border-radius: 9999px;
+    color: var(--warning);
+    position: relative;
+   
+}
+.warningIcon{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.DeleteMessageContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    flex: 1;
+}
+.DeleteMessageContainer h4{
+    color: var(--dark);
+    font-size: 20px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.DeleteMessageContainer h4 span{
+    display: flex;
+    font-size: 23px;
+    color: rgb(242, 56, 56);
+
+}
+.DeleteOpcions{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    flex: 1;
+}
+.NoDeleteButtom{
+    border: none;
+    flex: 1;
+    padding: 0.4rem;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--light);
+    background-color: var(--dark);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.DeleteBlogButtom{
+    border: none;
+    flex: 1;
+    padding: 0.4rem;
+    border-radius: 999px;
+    background-color: rgb(242, 56, 56);
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.NoDeleteButtom:hover{
+    background-color: var(--primary) !important;
+    color: #fff;
+}
+.DeleteBlogButtom:hover{
+    background-color: rgb(190, 31, 31) !important;
+}
+.messageFeth{
+    
+    padding: 5px;
+    border-radius: 5px;
+}
+.fetchSuccess{
+    text-align: center;
+    color: var(--success) !important;
+    font-size: 16px;
+    font-weight: 500 !important;
+    
+}
+.serverTimeout{
+    text-align: center;
+    color: var(--warning) !important;
+    font-size: 16px;
+    font-weight: 500 !important;
+}
+.waitingServer{
+    text-align: center;
+    color: var(--dark) !important;
+    font-size: 16px;
+    font-weight: 500 !important;  
+}
+.fetchError{
+    text-align: center;
+    color: var(--danger) !important;
+    font-size: 16px;
+    font-weight: 500 !important;
+}
+   

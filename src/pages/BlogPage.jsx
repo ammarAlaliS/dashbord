@@ -1,12 +1,14 @@
 import Greeting from "../components/Greeting";
 import Blog from "../components/Blog";
-import '../style/blog.css'
+import LinkElement from "../components/singleComponents/linkElement.jsx";
+import "../style/blog.css";
 
 export default function BlogPage() {
   return (
     <div>
       <Greeting />
-      <Blog/>
+      <LinkElement />
+      <Blog />
     </div>
   );
 }

@@ -1,143 +1,197 @@
 .blogCardContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 0.5em;
-    padding-bottom: 10px;
-    margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
 }
 
 .blogItem {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--light);
-    border-radius: 0.5em;
-    padding: 1em;
-    border: 1px solid rgba(241, 241, 241, 0.1);
-    color: var(--dark);
-    transition: background-color 0.3s ease-in-out;
-    gap: 10px;
+  flex: 1 1 320px; 
+  background-color: var(--light);
+  padding: 1em;
+  border: 1px solid var(--border-dark);
+  color: var(--dark);
+  transition: background-color 0.3s ease-in-out;
+  margin-bottom: 10px; /* Espacio entre tarjetas */
+  box-sizing: border-box; /* Incluir padding y border en el tamaño total */
+  height: min-content;
+}
+
+
+
+
+.card-blog-info{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 5px;
+
 }
 
 .blogItem img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .blogItem h2 {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--dark);
-    line-height: 1.3rem;
-
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.3rem;
 }
 .blogItem p {
-    font-size: 0.9rem;
-    font-weight: 400;
-    color: var(--dark);
-    line-height: 1.1rem;
-    opacity: 0.9;
-    
- 
-
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--dark);
+  line-height: 1.1rem;
+  opacity: 0.9;
+}
+.showmore button {
+  background-color: transparent;
+  border: none;
+  color: #2b8eff;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 10px;
+  line-height: 1;
 }
 
 .blogItem ul {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 5px;
-
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
 
 }
 
 .blogItem ul li {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: #fff;
-    background: linear-gradient(
-        120deg,
-        #060097 20%,
-        #512c77 50%,
-        #100f37 80%
-      );
-    border-radius: 2px;
-    padding: 4px 8px;
-    border: 1px solid #e7a7131b;
-
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #fff;
+  background: linear-gradient(120deg, #060097 20%, #512c77 50%, #100f37 80%);
+  border-radius: 2px;
+  padding: 4px 8px;
+  border: 1px solid #e7a7131b;
 }
-.authorInfo{
-    display: flex;
-    justify-content: space-between;
+.authorInfo {
+  display: flex;
+  justify-content: space-between;
 
 }
 .authorInfo p {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--dark);
-    line-height: 1rem;
-    opacity: 1;
-
-
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1rem;
+  opacity: 1;
 }
 .authorInfo p span {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--success);
-    line-height: 1.1rem;
-    opacity: 0.9;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--success);
+  line-height: 1.1rem;
+  opacity: 0.9;
 }
-.iconContainer{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
 }
-.commentContainer{
-    display: flex;
-    align-items: center;
-    height: 18px;
-    gap: 5px;
+.commentContainer {
+  display: flex;
+  align-items: center;
+  height: 18px;
+  gap: 5px;
+  
 }
-.commentContainer span{
-    font-size: 20px;
-    margin-top: 2px;
-    color: var(--primary);
+.commentContainer span {
+  font-size: 20px;
+  margin-top: 2px;
+  color: var(--primary);
 }
-.commentContainer strong{
-    font-size: 14px;
-    color: var(--dark);
+.commentContainer strong {
+  font-size: 14px;
+  color: var(--dark);
 }
-.likeContainer{
-    display: flex;
-    align-items: center;
-    height: 18px;
-    gap: 5px;
+.likeContainer {
+  display: flex;
+  align-items: center;
+  height: 18px;
+  gap: 5px;
 }
-.likeContainer span{
-    font-size: 20px;
-    margin-top: 2px;
-    color: var(--pink);
+.likeContainer span {
+  font-size: 20px;
+  margin-top: 2px;
+  color: var(--pink);
 }
-.likeContainer strong{
-    font-size: 14px;
-    color: var(--dark);
+.likeContainer strong {
+  font-size: 14px;
+  color: var(--dark);
 }
-.blogButtonContainer button {
-    width: 100%;
+.blogButtonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.BlogButtonContainerChoice {
+  display: flex;
+  gap: 5px;
+}
+.editButton {
+  padding: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  position: relative;
+
+  background-color: var(--danger) !important;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #23232384;
+  flex: 1;
+}
+.deleteButton{
     padding: 4px;
     font-size: 1rem;
     font-weight: 600;
-    color: #000;
+    color: #fff;
     position: relative;
-    background-color: var(--warning);
+    background-color: var(--primary);
     border-radius: 3px;
     cursor: pointer;
     transition: all 0.3s ease;
     border: 1px solid #23232384;
+    flex: 1;
+    text-align: center;
   }
-  .blogButtonContainer button:hover{
-    background:#e7a713;
+.reedButtonContainer {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+.reedButtonContainer .reedButton {
+  padding: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+  position: relative;
+  background-color: var(--warning);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #23232384;
+  flex: 1;
+  text-align: center;
+}
 
-  }
-  
+
+.blogButtonContainer button:hover {
+  background: #e7a713;
+}

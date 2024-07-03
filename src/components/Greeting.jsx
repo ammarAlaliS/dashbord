@@ -1,14 +1,16 @@
-// Greeting.js
-
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import useUserStore from "../app/userSlice";
 import "../style/navbar.css";
 import { useLocation } from "react-router-dom";
 import Buttom from "./singleComponents/Buttom";
 
 export default function Greeting() {
   const location = useLocation();
-  const user = useSelector((state) => state.user.user);
+  const { user, setUser } = useUserStore(state => ({
+    user: state.user,
+    setUser: state.setUser,
+  }));
+
   const [path, setPath] = useState('');
 
   useEffect(() => {
@@ -40,6 +42,7 @@ export default function Greeting() {
     weekday: "long",
   });
   const time = currentDateTime.toLocaleTimeString();
+
   return (
     <div className="titleSection">
       <div className="greetingAndTime">

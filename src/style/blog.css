@@ -12,7 +12,7 @@
     background-color: var(--light);
     border-radius: 0.5em;
     padding: 1em;
-    border: 1px solid rgba(241, 241, 241, 0.1);
+    border: 1px solid var(--border-dark);
     color: var(--dark);
     transition: background-color 0.3s ease-in-out;
 }
@@ -55,21 +55,21 @@
 }
 
 .create-blog-container .form-group input[type="text"]{
-    border: 1px solid rgba(241, 241, 241, 0.1);
+    border: 1px solid var(--border-dark);
     background-color: var(--grey);
     padding: 5px;
     outline: none;
     color: var(--dark);
 }
 .create-blog-container .form-group input {
-    border: 1px solid rgba(241, 241, 241, 0.1);
+    border: 1px solid var(--border-dark);
     background-color: var(--grey);
     padding: 5px;
     outline: none;
     color: var(--dark);
 }
 .create-blog-container .form-group textarea {
-    border: 1px solid rgba(241, 241, 241, 0.1);
+    border: 1px solid var(--border-dark);
     background-color: var(--grey);
     padding: 5px;
     outline: none;
@@ -96,7 +96,7 @@
 }
 
 .create-blog-container .section div input{
-    border: 1px solid rgba(241, 241, 241, 0.1);
+    border: 1px solid var(--border-dark);
     background-color: var(--grey);
     padding: 5px;
     outline: none;
@@ -113,14 +113,14 @@
 }
 
 .create-blog-container .section input[type="text"]{
-    border: 1px solid rgba(241, 241, 241, 0.1);
+    border: 1px solid var(--border-dark);
     background-color: var(--grey);
     padding: 5px;
     outline: none;
     color: var(--dark);
 }
 .create-blog-container .section textarea {
-    border: 1px solid rgba(241, 241, 241, 0.1);
+    border: 1px solid var(--border-dark);
     background-color: var(--grey);
     padding: 5px;
     outline: none;
