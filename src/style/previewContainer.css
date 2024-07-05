@@ -6,18 +6,16 @@
     border: 1px solid var(--border-dark);
     color: var(--dark);
     transition: background-color 0.3s ease-in-out;
-
-    max-width: 1200px;
-    margin: auto;
  
 }
 .preview-blog-container h2{
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--success);
-    
     text-align: start !important;
-  
+    
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
 
 }
 .preview-blog-container img{
@@ -30,7 +28,8 @@
     font-weight: 700;
     color: var(--dark);
     margin: 10px 0px 10px 0px;
-
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
 }
 .preview-blog-container p{
     font-size: 1.1rem;
@@ -39,6 +38,8 @@
     line-height: 1.4rem;
     opacity: 0.9;
     margin: 0px 0px 10px 0px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
    
 }
 .preview-blog-container ul {
@@ -47,7 +48,8 @@
    align-items: center;
    gap: 10px;
    margin-bottom: 10px;
-   
+   word-wrap: break-word; 
+   overflow-wrap: break-word;
 }
 .preview-blog-container ul li{
     font-size: 0.8rem;
@@ -93,6 +95,8 @@
     list-style: none;
     padding-left: 20px;
     padding-left: 30px;
+    word-wrap: break-word; /* Para navegadores más antiguos */
+    overflow-wrap: break-word;
   }
   
   .list {
@@ -105,6 +109,8 @@
     background-color: transparent !important;
     padding: 0px 0px 0px 20px !important;
     margin: 0px 0px 10px 0px;
+    word-wrap: break-word; /* Para navegadores más antiguos */
+    overflow-wrap: break-word;
   }
 
   .section-preview li::before {
@@ -127,6 +133,8 @@
     color: var(--dark);
     line-height: 1;
     margin: 0px 0px 10px 0px;
+    word-wrap: break-word; /* Para navegadores más antiguos */
+    overflow-wrap: break-word;
 
 }
 .section-preview p{
@@ -135,16 +143,20 @@
     color: var(--dark);
     line-height: 1.4rem;
     opacity: 0.7;
+    word-wrap: break-word; /* Para navegadores más antiguos */
+    overflow-wrap: break-word;
 }
 .blogCardContainerLoder{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center !important;
+    justify-content: center !important;
     flex: 1;
     margin-top: 100px;
 }
 .blogCardContainerLoder p {
     color: var(--dark);
     font-size: 20px;
+    word-wrap: break-word; /* Para navegadores más antiguos */
+    overflow-wrap: break-word;
 }
 

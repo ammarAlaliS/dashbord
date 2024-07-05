@@ -16,8 +16,9 @@ const Blog = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchBlogs();
+    fetchBlogs()
   }, [fetchBlogs]);
+
 
   useEffect(() => {
     const fetchBlogAuthors = async () => {
@@ -32,7 +33,7 @@ const Blog = () => {
           }
         });
         await Promise.all(authorPromises);
-        setLoading(false); // Mark loading as false once authors are fetched
+        setLoading(false);
       } catch (error) {
         console.error("Error al obtener los autores de los blogs:", error);
       }
@@ -40,7 +41,7 @@ const Blog = () => {
     if (blogs.length > 0) {
       fetchBlogAuthors();
     } else {
-      setLoading(false); // If there are no blogs, mark loading as false
+      setLoading(false);
     }
   }, [blogs, authors, fetchAuthorById]);
 

@@ -1,25 +1,24 @@
 .blogCardContainer {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 10px;
   padding-bottom: 10px;
   margin-top: 10px;
 }
 
 .blogItem {
-  flex: 1 1 320px; 
+ 
   background-color: var(--light);
   padding: 1em;
   border: 1px solid var(--border-dark);
   color: var(--dark);
   transition: background-color 0.3s ease-in-out;
-  margin-bottom: 10px; /* Espacio entre tarjetas */
-  box-sizing: border-box; /* Incluir padding y border en el tamaño total */
+  margin-bottom: 10px;
+  box-sizing: border-box;
   height: min-content;
+
+
 }
-
-
-
 
 .card-blog-info{
   display: flex;
@@ -41,6 +40,8 @@
   font-weight: 700;
   color: var(--dark);
   line-height: 1.3rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 .blogItem p {
   font-size: 0.9rem;
@@ -48,6 +49,8 @@
   color: var(--dark);
   line-height: 1.1rem;
   opacity: 0.9;
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
 }
 .showmore button {
   background-color: transparent;
@@ -64,6 +67,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 5px;
+  
 
 }
 
@@ -75,6 +79,9 @@
   border-radius: 2px;
   padding: 4px 8px;
   border: 1px solid #e7a7131b;
+      
+  word-wrap: break-word; 
+  overflow-wrap: break-word;
 }
 .authorInfo {
   display: flex;

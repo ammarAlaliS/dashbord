@@ -10,7 +10,6 @@
     align-items: center;
     justify-content: space-around;
     background-color: var(--light);
-    border-radius: 0.5em;
     padding: 1em;
     border: 1px solid var(--border-dark);
     color: var(--dark);
@@ -189,8 +188,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
-    flex: 1;
+    margin-bottom: 10px; 
+    width: max-content;
 }
 .create-blog-container .submit-btn {
     height: 0;

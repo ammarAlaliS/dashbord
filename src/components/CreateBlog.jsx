@@ -36,7 +36,7 @@ const CreateBlog = ({ blogData, onChange }) => {
       if (name === "blog_image_url") {
         onChange({
           ...blogData,
-          [name]: files[0], // Asignar directamente el archivo seleccionado
+          [name]: files[0], 
         });
       } else {
         onChange({
@@ -106,7 +106,7 @@ const CreateBlog = ({ blogData, onChange }) => {
       sections: seccionesActualizadas,
     });
 
-    ajustarAlturaTextareaSeccion(index); // Ajustar altura al cambiar contenido
+    ajustarAlturaTextareaSeccion(index); 
   };
 
   const eliminarSeccion = (index, indexLista = null) => {
@@ -124,7 +124,7 @@ const CreateBlog = ({ blogData, onChange }) => {
 
   const limpiarFormulario = () => {
     onChange({
-      blog_image_url: "", // Limpiar la URL de la imagen al limpiar el formulario
+      blog_image_url: "", 
       title: "",
       tags: "",
       blog_description: "",

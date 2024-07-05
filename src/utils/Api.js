@@ -15,6 +15,7 @@ export const fetchBlogs = async () => {
     }
   };
 
+
 export const fetchAuthor = async (userId) => {
     try {
       const response = await fetch(`${API_BASE_URL}/api/ObbaraMarket/user/${userId}`, {
