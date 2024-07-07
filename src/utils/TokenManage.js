@@ -14,5 +14,6 @@ export function clearToken() {
 
 
 export function isAuthenticated() {
-  return !!getToken(); 
+  const token = getToken();
+  return !!token; 
 }

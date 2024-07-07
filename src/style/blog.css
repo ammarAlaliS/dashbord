@@ -39,6 +39,24 @@
    flex-direction: column;
    gap: 5px;
 }
+.form-group2{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    height: 100%;
+
+}
+.form-group2 textarea{
+    background-color: var(--grey) !important;
+    color: var(--dark) !important;
+    border: 1px solid var(--border-dark);
+    height: 100%;
+    padding: 5px;
+    outline: none;
+    overflow: hidden;
+   
+}
+
 
 .create-blog-container .form-group label {
     font-size: 0.8rem;
@@ -52,6 +70,13 @@
     font-weight: 600;
 
 }
+.form-group2 label {
+    font-size: 0.8rem;
+    color: var(--warning);
+    font-weight: 600;
+    margin-top: 6px;
+}
+
 
 .create-blog-container .form-group input[type="text"]{
     border: 1px solid var(--border-dark);
@@ -67,18 +92,14 @@
     outline: none;
     color: var(--dark);
 }
-.create-blog-container .form-group textarea {
-    border: 1px solid var(--border-dark);
-    background-color: var(--grey);
-    padding: 5px;
-    outline: none;
-    color: var(--dark);
-}
+
+
 
 .create-blog-container .section-group {
     display: flex;
    flex-direction: column;
    gap: 10px;
+   margin-top: 20px;
 }
 
 .create-blog-container .section-group h3 {
@@ -118,14 +139,7 @@
     outline: none;
     color: var(--dark);
 }
-.create-blog-container .section textarea {
-    border: 1px solid var(--border-dark);
-    background-color: var(--grey);
-    padding: 5px;
-    outline: none;
-    color: var(--dark);
-    height: auto;
-}
+
 .buttons-container{
     display: flex;
     gap: 10px;
@@ -203,6 +217,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
     
 }
 .success-message{
@@ -218,7 +233,7 @@
     margin-top: 10px;
 }
 .file{
-    width: 135px;
+    width: 120px;
     background-color: var(--grey);
     border-radius: 5px;
     border: 1px solid rgba(241, 241, 241, 0.1);
@@ -226,8 +241,83 @@
 }
 .file-and-img{
     display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 7px;
+    
+}
+.inputSelection{
+    display: flex;
     align-items: center;
-    justify-content: space-between;
+    position: relative;
+    margin-bottom: 8px;
+}
+.inputSelection input{
+    z-index: 1000;
+    opacity: 0;  
+}
+.inputSelection span{
+    position: absolute;
+    font-size: 12px;
+    background-color: var(--grey);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    padding: 0.3rem;
+}
+.deletePhoto{
+    width: 120px;
+    font-size: 12px;
+    background-color: var(--danger);
+    border: none;
+    color: #fff;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+    padding: 0.3rem;
+}
+.image-previews{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.image-previews img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.list-item{
+    display: flex;
+    gap: 5px;
+    align-items: end;
+    background-color: var(--grey);
+    border: 1px solid var(--border-dark);
+    margin-bottom: 10px;
+    
+}
+.list-item textarea{
+    background-color: var(--grey) !important;
+    color: var(--dark) !important;
+    border: none;
+    height: 100%;
+    padding: 5px;
+    outline: none;
+    overflow: hidden;
+    
+}
+.list-item div {
+  
+    padding: 10px 10px 0px 10px;
+    cursor: pointer;
+}
+.eraseContent{
+    font-size: 24px;
+    transition: all 0.3s ease-in-out;
+}
+.eraseContent:hover{
+   color: rgb(255, 102, 102);
 }
 .list-item input {
    margin-bottom: 10px;
@@ -235,5 +325,12 @@
 .list-item textarea {
     width: 100%;
  }
+ .listElements{
+    background-color: transparent !important;
+    border: none !important;
+ }
+ .titleImg{
+    margin-bottom: 10px !important;
+}
 
 

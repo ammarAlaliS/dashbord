@@ -39,25 +39,24 @@ const BlogPageInfo = () => {
   if (!blog) {
     return <div>No se encontró ningún blog con el id {id}</div>;
   }
+
   const renderTags = (tags) => {
-    if (typeof tags === "string") {
-      return tags
-        .split(",")
-        .map((tag, index) => <li key={index}>{tag.trim()}</li>);
+    if (Array.isArray(tags)) {
+      return tags.map((tag, index) => <li key={index}>{tag.trim()}</li>);
+    } else if (typeof tags === "string") {
+      return tags.split(",").map((tag, index) => <li key={index}>{tag.trim()}</li>);
     }
     return null;
   };
+
   return (
     <div>
       <div className="preview-blog-container">
-        {blog.blog_image_url && (
-          <img
-            src={blog.blog_image_url.map((imgArray) => imgArray.url)}
-            alt={blog.blog_image_url.map((imgArray) => imgArray.alt)}
-            style={{ width: "100%", maxHeight: "400px", objectFit: "cover" }}
-          />
-        )}
-
+        <div className="image-container-reed">
+          {blog.blog_image_url.map((image, index) => (
+            <img key={index} src={image.url} alt={image.alt} />
+          ))}
+        </div>
         <h3>{blog.title}</h3>
         <ul className="tags-list">{blog.tags && renderTags(blog.tags)}</ul>
         <p>{blog.blog_description}</p>

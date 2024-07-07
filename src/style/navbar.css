@@ -167,6 +167,7 @@
     height: 100dvh;
     display: flex;
     justify-content: center;
+    background-image: var(--background-image);
 }
 
 .close{
@@ -191,12 +192,13 @@
     overflow-y: hidden;
     overflow-x: scroll;
     transition: left 0.3s ease-out;
-
+    border-bottom: 1px solid transparent;
     
 }
 .navbar.close{
     left: 0px;
-    transition: all 0.3s ease;
+
+    border-bottom: 1px solid var(--border-dark);
 }
 
 
@@ -318,7 +320,7 @@
 
 .mainContent{
     margin-top: 56px;
-    background: var(--grey);
+    background-color: transparent;
     padding:10px 10px 10px 10px;
     width: 100%;
     max-width: 1100px;   

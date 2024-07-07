@@ -1,227 +1,241 @@
 import React, { useState, useRef, useEffect } from "react";
+import { AiFillDelete } from "react-icons/ai";
+import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
 
 const CreateBlog = ({ blogData, onChange }) => {
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
+  const [manageButtonInfo, setManageButtonInfo] = useState(false);
+  const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
+  const [data, setData] = useState(null);
   const blogDescriptionRef = useRef(null);
 
   useEffect(() => {
-    ajustarAlturaTextarea();
-    blogData.sections.forEach((_, index) => {
-      ajustarAlturaTextareaSeccion(index);
+    adjustTextareaHeight(blogDescriptionRef.current);
+    blogData.sections.forEach((section, index) => {
+      section.content.forEach((_, listIndex) => {
+        adjustTextareaHeight(
+          document.getElementById(`section_content_${index}_${listIndex}`)
+        );
+      });
     });
-  }, [blogData.blog_description, blogData.sections]);
+  }, [blogData]);
 
-  const ajustarAlturaTextarea = () => {
-    const { current } = blogDescriptionRef;
-    if (current) {
-      current.style.height = "auto";
-      current.style.height = `${current.scrollHeight}px`;
+  const adjustTextareaHeight = (element) => {
+    if (element) {
+      element.style.height = "auto";
+      element.style.height = `${element.scrollHeight}px`;
     }
   };
 
-  const ajustarAlturaTextareaSeccion = (index) => {
-    const textareaId = `section_content_${index}`;
-    const textarea = document.getElementById(textareaId);
-    if (textarea) {
-      textarea.style.height = "auto";
-      textarea.style.height = `${textarea.scrollHeight}px`;
-    }
-  };
-
-  const handleChange = (e, index = null, campo = null) => {
+  const handleChange = (e, index = null, field = null, listIndex = null) => {
     const { name, value, files } = e.target;
-    if (index === null) {
-      if (name === "blog_image_url") {
-        onChange({
-          ...blogData,
-          [name]: files[0], 
-        });
-      } else {
-        onChange({
-          ...blogData,
-          [name]: value,
-        });
-      }
-    } else {
-      const seccionesActualizadas = [...blogData.sections];
-      seccionesActualizadas[index][campo] = value;
+
+    if (name === "blog_image_url") {
       onChange({
         ...blogData,
-        sections: seccionesActualizadas,
+        [name]: [...blogData.blog_image_url, ...Array.from(files)],
+      });
+    } else if (index === null) {
+      onChange({
+        ...blogData,
+        [name]: value,
+      });
+    } else {
+      const updatedSections = [...blogData.sections];
+      if (field === "content" || field === "list") {
+        updatedSections[index][field][listIndex] = value;
+      } else {
+        updatedSections[index][field] = value;
+      }
+
+      onChange({
+        ...blogData,
+        sections: updatedSections,
       });
 
-      if (campo === "content") {
-        ajustarAlturaTextareaSeccion(index);
+      if (field === "content") {
+        adjustTextareaHeight(
+          document.getElementById(`section_content_${index}_${listIndex}`)
+        );
       }
     }
 
     if (name === "blog_description") {
-      ajustarAlturaTextarea();
+      adjustTextareaHeight(blogDescriptionRef.current);
     }
   };
 
-  const agregarSeccion = () => {
+  const addSection = () => {
     onChange({
       ...blogData,
       sections: [...blogData.sections, { title: "", content: [], list: [] }],
     });
   };
 
-  const agregarListaSeccion = (index) => {
-    const seccionesActualizadas = [...blogData.sections];
-    seccionesActualizadas[index].list.push("");
+  const addListToSection = (sectionIndex) => {
+    const updatedSections = [...blogData.sections];
+    updatedSections[sectionIndex].list.push("");
     onChange({
       ...blogData,
-      sections: seccionesActualizadas,
+      sections: updatedSections,
     });
   };
 
-  const agregarContenidoSeccion = (index) => {
-    const seccionesActualizadas = [...blogData.sections];
-    seccionesActualizadas[index].content.push("");
+  const addContentToSection = (sectionIndex) => {
+    const updatedSections = [...blogData.sections];
+    updatedSections[sectionIndex].content.push("");
     onChange({
       ...blogData,
-      sections: seccionesActualizadas,
+      sections: updatedSections,
     });
   };
 
-  const handleChangeLista = (e, index, indexLista) => {
-    const { value } = e.target;
-    const seccionesActualizadas = [...blogData.sections];
-    seccionesActualizadas[index].list[indexLista] = value;
+  const removeContent = (sectionIndex, contentIndex) => {
+    const updatedSections = [...blogData.sections];
+    updatedSections[sectionIndex].content.splice(contentIndex, 1);
     onChange({
       ...blogData,
-      sections: seccionesActualizadas,
+      sections: updatedSections,
+    });
+  };
+  const removeList = (sectionIndex, listIndex) => {
+    const updatedSections = [...blogData.sections];
+    updatedSections[sectionIndex].list.splice(listIndex, 1);
+    onChange({
+      ...blogData,
+      sections: updatedSections,
     });
   };
 
-  const handleChangeContenido = (e, index, indexLista) => {
-    const { value } = e.target;
-    const seccionesActualizadas = [...blogData.sections];
-    seccionesActualizadas[index].content[indexLista] = value;
+  const removeSection = (sectionIndex) => {
+    const updatedSections = [...blogData.sections];
+    updatedSections.splice(sectionIndex, 1);
     onChange({
       ...blogData,
-      sections: seccionesActualizadas,
-    });
-
-    ajustarAlturaTextareaSeccion(index); 
-  };
-
-  const eliminarSeccion = (index, indexLista = null) => {
-    const seccionesActualizadas = [...blogData.sections];
-    if (indexLista !== null) {
-      seccionesActualizadas[index].list.splice(indexLista, 1);
-    } else {
-      seccionesActualizadas.splice(index, 1);
-    }
-    onChange({
-      ...blogData,
-      sections: seccionesActualizadas,
+      sections: updatedSections,
     });
   };
 
-  const limpiarFormulario = () => {
+  const clearForm = () => {
     onChange({
-      blog_image_url: "", 
+      blog_image_url: [],
       title: "",
       tags: "",
       blog_description: "",
       sections: [{ title: "", content: [], list: [] }],
     });
-    ajustarAlturaTextarea();
+    adjustTextareaHeight(blogDescriptionRef.current);
+  };
+
+  const handleDeleteImage = () => {
+    const updatedImages = [...blogData.blog_image_url];
+    updatedImages.pop();
+    onChange({
+      ...blogData,
+      blog_image_url: updatedImages,
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const token = localStorage.getItem("token");
     if (!token) {
       console.error("Token no encontrado.");
       return;
     }
 
-    if (!validarFormulario()) {
+    if (!validateForm()) {
       return;
     }
 
     try {
+      setManageButtonInfo(true);
+      setShowTimeoutMessage(false);
+
       const formData = new FormData();
-      formData.append("blog_image_url", blogData.blog_image_url);
+      blogData.blog_image_url.forEach((file) => {
+        formData.append(`blog_image_url`, file);
+      });
       formData.append("title", blogData.title);
       formData.append("tags", blogData.tags);
       formData.append("blog_description", blogData.blog_description);
 
       blogData.sections.forEach((section, index) => {
         formData.append(`sections[${index}][title]`, section.title);
-        section.content.forEach((item, indexLista) => {
-          formData.append(`sections[${index}][content][${indexLista}]`, item);
+        section.content.forEach((item, listIndex) => {
+          formData.append(`sections[${index}][content][${listIndex}]`, item);
         });
-        section.list.forEach((item, indexLista) => {
-          formData.append(`sections[${index}][list][${indexLista}]`, item);
+        section.list.forEach((item, listIndex) => {
+          formData.append(`sections[${index}][list][${listIndex}]`, item);
         });
       });
 
-      const response = await axios.post(
-        "https://obbaramarket-backend.onrender.com/api/ObbaraMarket/create/blog",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await Promise.race([
+        axios.post(
+          "https://obbaramarket-backend.onrender.com/api/ObbaraMarket/create/blog",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        ),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error("Timeout")), 30000)
+        ),
+      ]);
 
-      console.log("Blog creado:", response.data);
+      setData(response.data);
       setSuccessMessage("¡Blog creado exitosamente!");
-      limpiarFormulario();
+      clearForm();
     } catch (error) {
-      console.error("Error al crear el blog:", error);
-      if (error.response) {
-        console.log(error.response.data);
-        if (error.response.data.errors) {
-          setErrors(error.response.data.errors);
-        } else if (error.response.data.message) {
-          setErrors({
-            global: `Hubo un error al crear el blog: ${error.response.data.message}. Por favor, intenta de nuevo más tarde.`,
-          });
+      if (error.message === "Timeout") {
+        setShowTimeoutMessage(true);
+      } else {
+        if (error.response) {
+          console.log(error.response.data);
+          if (error.response.data.errors) {
+            setErrors(error.response.data.errors);
+          } else if (error.response.data.message) {
+            setErrors({
+              global: `Hubo un error al crear el blog: ${error.response.data.message}. Por favor, intenta de nuevo más tarde.`,
+            });
+          } else {
+            setErrors({
+              global:
+                "Hubo un error al crear el blog. Por favor, intenta de nuevo más tarde.",
+            });
+          }
         } else {
           setErrors({
             global:
-              "Hubo un error al crear el blog. Por favor, intenta de nuevo más tarde.",
+              "Hubo un error al conectar con el servidor. Por favor, intenta de nuevo más tarde.",
           });
         }
-      } else {
-        setErrors({
-          global:
-            "Hubo un error al conectar con el servidor. Por favor, intenta de nuevo más tarde.",
-        });
       }
+    } finally {
+      setManageButtonInfo(false);
     }
   };
 
-  const validarFormulario = () => {
+  const validateForm = () => {
     const { title, blog_description, sections } = blogData;
-    const nuevosErrores = {};
+    const newErrors = {};
 
-    // Validación del título
     if (!title || title.length < 5 || title.length > 100) {
-      nuevosErrores.title = "El título debe tener entre 5 y 100 caracteres.";
+      newErrors.title = "El título debe tener entre 5 y 100 caracteres.";
     }
 
-    // Validación de la descripción del blog
     if (!blog_description || blog_description.length < 10) {
-      nuevosErrores.blog_description =
+      newErrors.blog_description =
         "La descripción del blog debe tener al menos 10 caracteres.";
     }
 
-    // Actualizar el estado de los errores
-    setErrors(nuevosErrores);
-
-    // El formulario es válido si no hay errores
-    return Object.keys(nuevosErrores).length === 0;
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   return (
@@ -229,27 +243,46 @@ const CreateBlog = ({ blogData, onChange }) => {
       <h2>Crear Nuevo Blog</h2>
       <form className="blog-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="blog_image_url">Imagen:</label>
+          <label htmlFor="blog_image_url" className="titleImg">
+            Imagenes:
+          </label>
           <div className="file-and-img">
-            <input
-              type="file"
-              name="blog_image_url"
-              id="blog_image_url"
-              onChange={(e) => handleChange(e)}
-              required
-              placeholder="Selecciona una imagen..."
-              className="file"
-            />
-            {blogData.blog_image_url && (
-              <img
-                style={{ width: "100px", height: "100px", objectFit: "cover" }}
-                src={
-                  blogData.blog_image_url instanceof File
-                    ? URL.createObjectURL(blogData.blog_image_url)
-                    : blogData.blog_image_url
-                }
-                alt="Preview"
+            <div className="inputSelection">
+              <input
+                type="file"
+                name="blog_image_url"
+                id="blog_image_url"
+                onChange={(e) => handleChange(e)}
+                multiple
+                required
+                placeholder="Selecciona imágenes..."
+                className="file"
               />
+              <span>Subir imagenes</span>
+            </div>
+            {blogData.blog_image_url && blogData.blog_image_url.length > 0 && (
+              <div className="image-previews">
+                {blogData.blog_image_url.map((file, index) => (
+                  <img
+                    key={index}
+                    src={
+                      file instanceof File ? URL.createObjectURL(file) : file
+                    }
+                    alt="Preview"
+                  />
+                ))}
+              </div>
+            )}
+            {blogData.blog_image_url && blogData.blog_image_url.length > 0 && (
+              <div>
+                <button
+                  className="deletePhoto"
+                  type="button"
+                  onClick={handleDeleteImage}
+                >
+                  Eliminar foto
+                </button>
+              </div>
             )}
           </div>
         </div>
@@ -279,7 +312,7 @@ const CreateBlog = ({ blogData, onChange }) => {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group2">
           <label htmlFor="blog_description">Descripción:</label>
           <textarea
             name="blog_description"
@@ -312,56 +345,68 @@ const CreateBlog = ({ blogData, onChange }) => {
                   {errors[`sections[${index}].title`]}
                 </p>
               )}
-              <label htmlFor={`section_content_${index}`}>
-                Contenido de la sección:
-              </label>
-              <div className="section-list">
-                {Array.isArray(section.content) &&
-                  section.content.map((item, listIndex) => (
-                    <div key={listIndex} className="list-item">
-                      <textarea
-                        name={`section_content_${index}_${listIndex}`}
-                        id={`section_content_${index}_${listIndex}`}
-                        value={item}
-                        onChange={(e) =>
-                          handleChangeContenido(e, index, listIndex)
-                        }
-                        placeholder="Puedes agregar otro párrafo si deseas, es opcional"
-                        ref={blogDescriptionRef}
-                        required
+              <div className="form-group">
+                <label htmlFor={`section_content_${index}`}>
+                  Contenido de la sección:
+                </label>
+                {section.content.map((item, listIndex) => (
+                  <div key={listIndex} className="list-item">
+                    <textarea
+                      name={`section_content_${index}_${listIndex}`}
+                      id={`section_content_${index}_${listIndex}`}
+                      value={item}
+                      ref={blogDescriptionRef}
+                      onChange={(e) =>
+                        handleChange(e, index, "content", listIndex)
+                      }
+                      placeholder="Puedes agregar otro párrafo si deseas, es opcional"
+                      required
+                    />
+                    <div>
+                      <AiFillDelete
+                        onClick={() => removeContent(index, listIndex)}
+                        className="eraseContent"
                       />
                     </div>
-                  ))}
+                    {errors[`sections[${index}].content`] && (
+                      <p className="error-message">
+                        {errors[`sections[${index}].content`]}
+                      </p>
+                    )}
+                  </div>
+                ))}
               </div>
               <label htmlFor={`section_list_${index}`}>
                 Lista de la sección:
               </label>
               <div className="section-list">
-                {Array.isArray(section.list) &&
-                  section.list.map((item, listIndex) => (
-                    <div key={listIndex} className="list-item">
-                      <input
-                        type="text"
-                        name={`section_list_${index}_${listIndex}`}
-                        id={`section_list_${index}_${listIndex}`}
-                        value={item}
-                        onChange={(e) => handleChangeLista(e, index, listIndex)}
-                        ref={blogDescriptionRef}
-                        placeholder="Puedes agregar una lista si deseas, es opcional"
+                {section.list.map((item, listIndex) => (
+                  <div key={listIndex} className="list-item">
+                    <textarea
+                      name={`section_list_${index}_${listIndex}`}
+                      id={`section_list_${index}_${listIndex}`}
+                      value={item}
+                      ref={blogDescriptionRef}
+                      onChange={(e) =>
+                        handleChange(e, index, "list", listIndex)
+                      }
+                      className="listElements"
+                      placeholder="Puedes agregar una lista si deseas, es opcional"
+                    />
+                    <div>
+                      <AiFillDelete
+                        className="eraseContent"
+                        onClick={() => removeList(index, listIndex)}
                       />
                     </div>
-                  ))}
+                  </div>
+                ))}
               </div>
-              {errors[`sections[${index}].content`] && (
-                <p className="error-message">
-                  {errors[`sections[${index}].content`]}
-                </p>
-              )}
               {blogData.sections.length > 1 && (
                 <button
                   className="delete"
                   type="button"
-                  onClick={() => eliminarSeccion(index)}
+                  onClick={() => removeSection(index)}
                 >
                   Eliminar Sección
                 </button>
@@ -372,7 +417,7 @@ const CreateBlog = ({ blogData, onChange }) => {
             <button
               type="button"
               className="add-section-btn"
-              onClick={agregarSeccion}
+              onClick={addSection}
             >
               Sección
             </button>
@@ -380,9 +425,7 @@ const CreateBlog = ({ blogData, onChange }) => {
               <button
                 type="button"
                 className="add-list-btn"
-                onClick={() =>
-                  agregarListaSeccion(blogData.sections.length - 1)
-                }
+                onClick={() => addListToSection(blogData.sections.length - 1)}
               >
                 Lista
               </button>
@@ -392,7 +435,7 @@ const CreateBlog = ({ blogData, onChange }) => {
                 type="button"
                 className="add-content-btn"
                 onClick={() =>
-                  agregarContenidoSeccion(blogData.sections.length - 1)
+                  addContentToSection(blogData.sections.length - 1)
                 }
               >
                 Párrafo
@@ -401,10 +444,29 @@ const CreateBlog = ({ blogData, onChange }) => {
           </div>
         </div>
         <button type="submit" className="submit-btn">
-          Crear Blog
+          {manageButtonInfo ? (
+            <>
+            <span>Creando Blog</span>
+            <span style={{ marginRight: '10px' }}> <CircularProgress color="inherit" size={15}/></span>
+            </>
+          ) : (
+           <span>Crear Blog</span>
+           
+          )}
         </button>
-        {successMessage && <p className="success-message">{successMessage}</p>}
-        {errors.global && <p className="error-message">{errors.global}</p>}
+
+        <div className="messageFetch">
+          {manageButtonInfo && !showTimeoutMessage && (
+            <p className="waitingServer">Enviando solicitud...</p>
+          )}
+          {showTimeoutMessage && (
+            <p className="serverTimeout">Servidor apagado, espera...</p>
+          )}
+          {data && !data.error && (
+            <p className="fetchSuccess">Blog creado exitosamente.</p>
+          )}
+          {data && data.error && <p className="fetchError">{data.error}</p>}
+        </div>
       </form>
     </div>
   );
